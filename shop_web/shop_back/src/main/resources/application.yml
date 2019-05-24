@@ -1,0 +1,18 @@
+dubbo:
+  application:
+    name: back_web
+  registry:
+    address: zookeeper://192.168.98.129:2181
+  consumer:
+    check: false
+fdfs:
+  tracker-list:
+    - 192.168.98.129:22122
+  connect-timeout: 10000
+  thumb-image:
+    height: 100
+    width: 100
+  pool:
+    jmx-enabled: false
+img:
+  service: http://192.168.98.129

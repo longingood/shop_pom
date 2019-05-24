@@ -1,0 +1,14 @@
+spring:
+  data:
+    solr:
+      host: http://192.168.98.129:8080/solr
+dubbo:
+  registry:
+    address: zookeeper://192.168.98.129:2181
+  application:
+    name: service_search
+  protocol:
+    port: -1
+    name: dubbo
+  provider:
+    timeout: 60000

@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    url: jdbc:mysql:///shop1901
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+dubbo:
+  application:
+    name: service_goods
+  registry:
+    address: zookeeper://192.168.98.129:2181
+  protocol:
+    name: dubbo
+    port: -1
+  consumer:
+    check: false
