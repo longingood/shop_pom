@@ -29,6 +29,11 @@ public class SearchServiceImpl implements ISearchService {
     @Autowired
     private SolrClient solrClient;
 
+    /**
+     * 通过关键字搜索索引库
+     * @param keyword
+     * @return
+     */
     @Override
     public List<Goods> query(String keyword) {
 
@@ -60,13 +65,13 @@ public class SearchServiceImpl implements ISearchService {
 
 
             for (SolrDocument result : results) {
+
                 Goods goods = new Goods();
+
                 goods.setId(Integer.parseInt(result.get("id")+""));
                 goods.setGname(result.get("gname")+"");
-
                 BigDecimal bigDecimal = BigDecimal.valueOf((float)result.get("gprice"));
                 goods.setGprice(bigDecimal);
-
                 goods.setGimages(result.get("gimages") + "");
                 goods.setGsave(Integer.parseInt(result.get("gsave") + ""));
 
@@ -91,6 +96,11 @@ public class SearchServiceImpl implements ISearchService {
         return goodsList ;
     }
 
+    /**
+     * 添加商品信息到搜索库
+     * @param goods
+     * @return
+     */
     @Override
     public int addGoods(Goods goods) {
 
