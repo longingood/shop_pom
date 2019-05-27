@@ -91,6 +91,12 @@ public class GoodsController {
         return "updateGoods";
     }
 
+
+    /**
+     *商品的更改
+     * @param goods
+     * @return
+     */
     @RequestMapping("/goodsUpdate")
     public String goodsUpdate(Goods goods){
 

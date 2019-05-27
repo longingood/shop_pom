@@ -20,4 +20,6 @@ public interface IGoodsService {
     Goods getGoodId(int id);
 
     int updateGoods(Goods goods);
+
+    Goods queryById(Integer gid);
 }

@@ -31,7 +31,7 @@ public class Goods implements Serializable {
 
     private String gimages;
 
-    private int tid;
+    private int tid=1;
 
-    private int gsave;
+    private int gsave=0;
 }

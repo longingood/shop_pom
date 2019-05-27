@@ -4,6 +4,7 @@ import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.qf.dao.IGoodsMapper;
 import com.qf.entity.Goods;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -22,6 +23,9 @@ public class GoodsServiceImpl implements IGoodsService {
     @Reference
     private ISearchService searchService;
 
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
+
     @Override
     public List<Goods> queryList() {
         List<Goods> list = goodsMapper.selectList(null);
@@ -33,10 +37,14 @@ public class GoodsServiceImpl implements IGoodsService {
         //添加到数据库中
         goodsMapper.insert(goods);
 
-        //同步到索引库中
-        searchService.addGoods(goods);
+       /* //同步到索引库中
+        searchService.addGoods(goods);*/
 
-        return 1 ;
+       //将商品信息放入到队列中,进行异步化处理
+      rabbitTemplate.convertAndSend("goods_exchange", "", goods);
+
+
+      return 1 ;
     }
 
     @Override
@@ -54,5 +62,10 @@ public class GoodsServiceImpl implements IGoodsService {
     public int updateGoods(Goods goods) {
         goodsMapper.updateById(goods);
         return 0;
+    }
+
+    @Override
+    public Goods queryById(Integer gid) {
+        return goodsMapper.selectById(gid);
     }
 }

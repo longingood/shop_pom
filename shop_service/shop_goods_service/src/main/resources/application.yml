@@ -4,6 +4,14 @@ spring:
     username: root
     password: root
     driver-class-name: com.mysql.jdbc.Driver
+  rabbitmq:
+    host: 192.168.98.129
+    username: guest
+    password: guest
+    port: 5672
+    virtual-host: /
+    connection-timeout: 60000
+
 dubbo:
   application:
     name: service_goods

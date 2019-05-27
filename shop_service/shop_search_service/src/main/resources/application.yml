@@ -2,6 +2,13 @@ spring:
   data:
     solr:
       host: http://192.168.98.129:8080/solr
+  rabbitmq:
+    host: 192.168.98.129
+    port: 5672
+    username: guest
+    password: guest
+    virtual-host: /
+    connection-timeout: 60000
 dubbo:
   registry:
     address: zookeeper://192.168.98.129:2181
