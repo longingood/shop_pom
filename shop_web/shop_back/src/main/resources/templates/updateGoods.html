@@ -29,6 +29,12 @@
           media="screen" />
 
     <script>
+        
+        $(function () {
+            
+        })
+    
+    
         $(function(){
             //初始化webuploader
             var uploader = WebUploader.create({
@@ -108,8 +114,8 @@
                             <label>商品图片</label>
                         <div id="imgs"></div>
                         <div id="imgs_div"  style="padding: 10px;width: 600px; height: 200px; border: 1px solid #661aff; margin-bottom: 10px;">
-                           <tr>
-                               <img style="width: 120px; height: 90px" th:src="|${imgPath}/${#strings.listSplit(goods.gimages, '|')[0]}|"/>
+                           <tr th:each="image:${imageList}" >
+                              <a id="image" > <img style="width: 120px; height: 90px"  th:src="|${imgPath}/${image}|"/></a>
                            </tr>
 
                         </div>

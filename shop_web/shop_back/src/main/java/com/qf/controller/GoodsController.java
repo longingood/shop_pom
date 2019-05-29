@@ -86,6 +86,11 @@ public class GoodsController {
 
         Goods goods = goodsService.getGoodId(id);
 
+        //将goods对象中的图片拆分为字符串数组
+        String[] imageList = goods.getGimages().split("\\|");
+
+
+        model.addAttribute("imageList",imageList);
         model.addAttribute("goods",goods);
         model.addAttribute("imgPath",imgPath);
         return "updateGoods";

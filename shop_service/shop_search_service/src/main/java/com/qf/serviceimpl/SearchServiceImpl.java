@@ -11,6 +11,7 @@ import org.apache.solr.common.SolrDocument;
 import org.apache.solr.common.SolrDocumentList;
 import org.apache.solr.common.SolrInputDocument;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -51,6 +52,8 @@ public class SearchServiceImpl implements ISearchService {
         solrQuery.setHighlightSimplePre("<font color='red'>");//设置前缀
         solrQuery.setHighlightSimplePost("</font>");//设置后缀
         solrQuery.addHighlightField("gname");
+
+        //设置分页
 
 
         List<Goods> goodsList = new ArrayList<>();
