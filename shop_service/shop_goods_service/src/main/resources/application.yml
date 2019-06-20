@@ -22,3 +22,8 @@ dubbo:
     port: -1
   consumer:
     check: false
+
+mybatis-plus:
+  mapper-locations: classpath:com/qf/dao/*.xml
+  type-aliases-package: com.qf.entity
+

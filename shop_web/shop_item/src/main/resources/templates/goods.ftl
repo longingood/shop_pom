@@ -12,6 +12,8 @@
     <script type="text/javascript" src="js/jquery.js" ></script>
     <script type="text/javascript" src="js/topNav.js" ></script>
     <script type="text/javascript" src="js/shop_goods.js" ></script>
+
+    <script type="text/javascript" src="http://localhost:8084/js/login.js"></script>
 </head>
 <body>
 <!-- Header  -wll-2013/03/24 -->
@@ -20,8 +22,7 @@
     <div class="shop_hd_topNav">
         <div class="shop_hd_topNav_all">
             <!-- Header TopNav Left -->
-            <div class="shop_hd_topNav_all_left">
-                <p>您好，欢迎来到<b><a href="/">ShoopNC商城</a></b>[<a href="">登录</a>][<a href="">注册</a>]</p>
+            <div id="pid" class="shop_hd_topNav_all_left" >
             </div>
             <!-- Header TopNav Left End -->
 
@@ -599,12 +600,20 @@
                 </li>
                 <li style="padding:20px 0;">
                     <label>&nbsp;</label>
-                    <span><a href="" class="goods_sub goods_sub_gou" >加入购物车</a></span>
+                    <span><a onclick="addCart();" class="goods_sub goods_sub_gou" >加入购物车</a></span>
                 </li>
             </ul>
         </div>
     </div>
     <!-- 商品展示 End -->
+    <script type="text/javascript">
+        function addCart() {
+            var gid = ${goods.id};
+            var gnumber= $("#good_nums").val();
+            location.href="http://localhost:8085/cartController/addCart?id="+ gid +"&gnumber=" + gnumber;
+        }
+
+    </script>
 
     <div class="clear mt15"></div>
     <!-- Goods Left -->

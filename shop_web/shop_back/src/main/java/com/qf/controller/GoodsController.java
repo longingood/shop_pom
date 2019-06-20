@@ -2,6 +2,7 @@ package com.qf.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.qf.entity.Goods;
+import com.qf.entity.Page;
 import com.qf.service.impl.IGoodsService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -31,15 +32,24 @@ public class GoodsController {
      * @return
      */
     @RequestMapping("queryList")
-    public String queryList(Model model){
-
-        List<Goods> goods = goodsService.queryList();
-
-        model.addAttribute("goods",goods);
+    public String queryList(Model model,Page page){
+        /*model.addAttribute("goods",goods);*/
         model.addAttribute("imgPath",imgPath);
 
         return "goodsList";
     }
+
+    @RequestMapping("getGoodsPage")
+    public String getGoodsPage( Page<Goods> page,Model model){
+
+
+        page = goodsService.pageList(page);
+        model.addAttribute("imgPath",imgPath);
+        model.addAttribute("url","goodsController/getGoodsPage?");
+        model.addAttribute("page",page);
+        return "goodsList";
+    }
+
 
     /**
      * 添加商品
@@ -58,11 +68,12 @@ public class GoodsController {
             gimages += s;
         }
 
+
         goods.setGimages(gimages);
 
         goodsService.addGoods(goods);
 
-        return "redirect:/goodsController/queryList";
+        return "redirect:/goodsController/getGoodsPage";
     }
 
     /**
@@ -74,7 +85,7 @@ public class GoodsController {
     public String goodsDelete(int id){
         System.out.println(id);
         goodsService.deleteGoods(id);
-        return "redirect:/goodsController/queryList";
+        return "redirect:/goodsController/getGoodsPage";
     }
 
     /**
@@ -107,6 +118,6 @@ public class GoodsController {
 
         goodsService.updateGoods(goods);
 
-        return "redirect:/goodsController/queryList";
+        return "redirect:/goodsController/getGoodsPage";
     }
 }

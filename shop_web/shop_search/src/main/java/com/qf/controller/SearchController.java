@@ -24,8 +24,6 @@ public class SearchController {
     @RequestMapping("searchByKey")
     public String searchBykey(String searchByKeyWord, Model model){
 
-        System.out.println("进行商品的搜索，关键词是：" + searchByKeyWord);
-
         List<Goods> goods = searchService.query(searchByKeyWord);
 
         model.addAttribute("goods",goods);

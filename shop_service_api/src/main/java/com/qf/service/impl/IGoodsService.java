@@ -1,6 +1,7 @@
 package com.qf.service.impl;
 
 import com.qf.entity.Goods;
+import com.qf.entity.Page;
 
 import java.util.List;
 
@@ -22,4 +23,8 @@ public interface IGoodsService {
     int updateGoods(Goods goods);
 
     Goods queryById(Integer gid);
+
+    Page<Goods> getGoodsPage(Page<Goods> page);
+
+    Page<Goods> pageList(Page Page);
 }

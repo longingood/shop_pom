@@ -21,6 +21,8 @@
     <!-- jQuery Configuration -->
     <script type="text/javascript"
             src="resources/scripts/simpla.jquery.configuration.js"></script>
+    <script type="text/javascript"
+            src="resources/lib/layui-v2.4.5/layui-v2.4.5/layui/layui.all.js"></script>
 </head>
 <body>
 <div id="main-content">
@@ -42,7 +44,7 @@
                     </thead>
 
                     <tbody>
-                    <tr th:each="good :${goods}">
+                    <tr th:each="good :${page.list}">
                         <td><input type="checkbox" /></td>
                         <td th:text="${good.id}">Lorem ipsum dolor</td>
                         <td th:text="${good.gname}"><a href="#" title="title">Sit amet</a></td>
@@ -65,6 +67,9 @@
                                 <a class="mybutton" href="/backController/goodsAdd">添加商品</a>
                             </div>
 
+
+
+
                             <!-- 分页
                             <div class="pagination">
                                 <a href="#" title="First Page">&laquo; First</a><a href="#"
@@ -80,8 +85,15 @@
 </tr>
 </tfoot>
 </table>
-</div>
-</div>
+                <a href="/goodsController/getGoodsPage?number=1" th:text="${page.number==1?'':'首页'}">首页</a>
+                <a th:href="|/goodsController/getGoodsPage?number=${page.number-1}|" th:text="${page.number==1?'':'上一页'}">上一页</a>
+                <a th:href="|/goodsController/getGoodsPage?number=${page.number+1}|" th:text="${page.number==page.totalPage?'':'下一页'}">下一页</a>
+                <a th:href="|/goodsController/getGoodsPage?number=${page.totalPage}|" th:text="${page.number==page.totalPage?'':'尾页'}">尾页</a>
+<!--</div>-->
+            <!--<div th:replace="common/page:w:page_div"></div>-->
+
+<!--</div>-->
+
 <!-- End .content-box-content -->
 </div>
 </div>
